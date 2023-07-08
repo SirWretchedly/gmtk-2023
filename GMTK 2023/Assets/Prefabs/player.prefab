@@ -76,7 +76,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: -1366105342, guid: 2ddc0ec1e687bf3419786af642131db1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -127,8 +127,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff9aaa545e4601b4896dc4c934547123, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 2
+  moveSpeed: 2.3
   rb: {fileID: 8964515462568186414}
+  animator: {fileID: 0}
   playerBulletPrefab: {fileID: 8588810510171442941, guid: 561f6d572553d7f42807f5b1b4cad76f, type: 3}
   playerTransform: {fileID: 0}
   fireRate: 0.6

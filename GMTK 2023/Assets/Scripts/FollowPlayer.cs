@@ -33,7 +33,7 @@ public class FollowPlayer : MonoBehaviour
         Debug.Log("YESSSS " + collision.gameObject.tag);
         if (collision.gameObject.CompareTag("bullet"))
         {
-            
+
             BulletControl bulletController = collision.gameObject.GetComponent<BulletControl>();
 
             if (bulletController != null)
@@ -49,6 +49,16 @@ public class FollowPlayer : MonoBehaviour
                 Instantiate(collision.GetComponent<BulletMovement>().egg).transform.position = transform.position;
                 Destroy(collision.gameObject);
             }
+        }
+        if(collision.gameObject.CompareTag("fire"))
+        {
+            currentHealth -= 10;
+            if (currentHealth <= 0)
+            {
+                Destroy(gameObject);
+            }
+            collision.GetComponent<ParticleSystem>().Play();
+            Destroy(collision.gameObject);
         }
     }
 }

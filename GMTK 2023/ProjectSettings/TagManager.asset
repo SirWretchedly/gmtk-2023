@@ -12,6 +12,8 @@ TagManager:
   - buton3
   - paneltime
   - canvass
+  - fire
+  - health
   layers:
   - Default
   - TransparentFX
@@ -25,7 +27,7 @@ TagManager:
   - water
   - hay
   - floor
-  - 
+  - fire
   - 
   - 
   - 

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
@@ -22,7 +23,7 @@ public class PlayerHealth : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     private void OnCollisionStay2D(Collision2D collision)
@@ -30,7 +31,7 @@ public class PlayerHealth : MonoBehaviour
         Debug.Log("YESSSS " + collision.gameObject.tag);
         if (collision.gameObject.CompareTag("enemy") && !invincible)
         {
-            
+
             FollowPlayer enemy = collision.gameObject.GetComponent<FollowPlayer>();
 
             if (enemy != null)
@@ -44,6 +45,22 @@ public class PlayerHealth : MonoBehaviour
                 }
             }
             StartCoroutine("GetInv");
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("fire") && !invincible)
+        {
+            currentHealth -= 10;
+            Destroy(collision.gameObject);
+            StartCoroutine("GetInv");
+        }
+        else if (collision.gameObject.CompareTag("health") && currentHealth < maxHealth)
+        {
+            currentHealth += 10;
+            if(currentHealth > maxHealth) { currentHealth = maxHealth; }
+            Destroy(collision.gameObject);
         }
     }
 

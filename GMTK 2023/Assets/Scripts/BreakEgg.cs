@@ -8,7 +8,7 @@ public class BreakEgg : MonoBehaviour
     {
         if (collision.tag == "bullet")
         {
-            Instantiate(collision.GetComponent<BulletMovement>().egg).transform.position = transform.position;
+            Instantiate(collision.GetComponent<BulletMovement>().egg).transform.position = collision.transform.position;
             Destroy(collision.gameObject);
         }
     }

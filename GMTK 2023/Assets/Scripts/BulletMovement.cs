@@ -27,16 +27,10 @@ public class BulletMovement : MonoBehaviour
 
 	}
 
-<<<<<<< Updated upstream
-	void Movement() {
-        if (rb != null)
-		    rb.velocity = new Vector2 (velX, velY);
-=======
 	void Movement()
 	{
-		rb.velocity = new Vector2(velX, velY);
-
->>>>>>> Stashed changes
+		if (rb != null)
+			rb.velocity = new Vector2(velX, velY);
 	}
 
 	private void DeleteObject()
