@@ -8,12 +8,13 @@ public class Spawner : MonoBehaviour
     public GameObject player;
     public GameObject[] gameObjects;
     public float[] chance;
+    public float min, max;
     public float cooldown;
     public float spawnChance;
 
     private void Start()
     {
-        cooldown = Random.Range(5, 15);
+        cooldown = Random.Range(min, max);
         StartCoroutine(Spawn());
     }
 
@@ -28,10 +29,11 @@ public class Spawner : MonoBehaviour
                 GameObject zombie = Instantiate(gameObjects[i]);
                 zombie.transform.position = transform.position;
                 zombie.GetComponent<AIDestinationSetter>().target = player.transform;
+                break;
             }
 
         }
-        cooldown = Random.Range(5, 15);
+        cooldown = Random.Range(min, max);
         StartCoroutine(Spawn());
     }
 }

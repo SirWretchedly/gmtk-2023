@@ -14,7 +14,7 @@ public class PlayerMoney : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -23,19 +23,42 @@ public class PlayerMoney : MonoBehaviour
         counterText.text = currentMoney.ToString();
     }
 
-    private void OnTriggerEnter2D(Collider2D collision) {
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
         Debug.Log(collision.gameObject.tag);
-        if (collision.gameObject.CompareTag("money")) {
+        if (collision.gameObject.CompareTag("money"))
+        {
             currentMoney += 1;
             Destroy(collision.gameObject);
-        } else if (collision.gameObject.CompareTag("shop")) {
+        }
+        else if (collision.gameObject.CompareTag("shop"))
+        {
+            ToggleTimeFreeze();
             shopCanvas.SetActive(true);
         }
     }
 
-    public void SpendMoney(int price) {
-        if (currentMoney >= price) {
+    public void SpendMoney(int price)
+    {
+        if (currentMoney >= price)
+        {
             currentMoney -= price;
+        }
+    }
+
+    private void ToggleTimeFreeze()
+    {
+        if (Time.timeScale == 0f)
+        {
+            // Unfreeze time
+            Time.timeScale = 1f;
+            Debug.Log("Time unfrozen.");
+        }
+        else
+        {
+            // Freeze time
+            Time.timeScale = 0f;
+            Debug.Log("Time frozen.");
         }
     }
 }

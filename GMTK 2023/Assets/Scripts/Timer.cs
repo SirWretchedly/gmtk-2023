@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class Timer : MonoBehaviour
 {
+    public Canvas canvas;
+
     public RoleReverseTime reverse;
     public float[] evenTime;
 
@@ -15,6 +17,7 @@ public class Timer : MonoBehaviour
 
     private void Start()
     {
+        Time.timeScale = 1;
         timeI = GetComponent<Image>();
         time = maxTime;
     }
@@ -23,12 +26,18 @@ public class Timer : MonoBehaviour
     {
         foreach (float et in evenTime)
         {
-            if(et <= maxTime - time && et >= maxTime - time - 0.3)
+            if (et <= maxTime - time && et >= maxTime - time - 0.3)
             {
                 reverse.ActivatePanel();
             }
         }
         time -= Time.deltaTime;
-        timeI.fillAmount = time/maxTime;
+        timeI.fillAmount = time / maxTime;
+
+        if(time <= 0)
+        {
+            Time.timeScale = 0;
+            canvas.gameObject.SetActive(true);
+        }
     }
 }

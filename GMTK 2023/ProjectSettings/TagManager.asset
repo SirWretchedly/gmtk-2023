@@ -3,7 +3,21 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - shop
+  - enemy
+  - health
+  - money
+  - reversetime
+  - buton1
+  - buton3
+  - buton2
+  - paneltime
+  - shopPrice
+  - bullet
+  - time
+  - canvass
+  - fire
   layers:
   - Default
   - TransparentFX
@@ -11,11 +25,11 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
-  - 
+  - water
+  - hay
+  - player
+  - egg
+  - zombie
   - 
   - 
   - 

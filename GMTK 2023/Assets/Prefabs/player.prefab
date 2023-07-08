@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 6294202600201423509}
   - component: {fileID: 706822217144706830}
   - component: {fileID: 3691344985313049242}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -216,6 +216,7 @@ MonoBehaviour:
   maxHealth: 100
   currentHealth: 0
   invincibilityTime: 1
+  fire_heart: 0
 --- !u!114 &3691344985313049242
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -229,3 +230,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentMoney: 0
+  counterText: {fileID: 0}
+  shopCanvas: {fileID: 0}

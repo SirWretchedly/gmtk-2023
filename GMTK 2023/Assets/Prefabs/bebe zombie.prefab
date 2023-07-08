@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 8275535846916171591}
   - component: {fileID: 3688318055945549393}
   - component: {fileID: 8169645761282361822}
-  m_Layer: 6
+  m_Layer: 10
   m_Name: bebe zombie
   m_TagString: enemy
   m_Icon: {fileID: 0}
@@ -80,7 +80,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: -1429561352, guid: 06fa244b7c39c4e4e85ff77bc886807e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -288,7 +288,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01e7e7e571e5d45409f0b6d69bd97064, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  probabilityWatermelon: 0.3
-  probabilityHearth: 0.3
+  probabilityWatermelon: 0
+  probabilityHearth: 0.1
   watermelon: {fileID: 4152350371531143693, guid: 64f7b23ee90109942b90fb4c28096424, type: 3}
   heart: {fileID: 113726401642216754, guid: 181ab4eaf2015e24c890ba26245a161b, type: 3}

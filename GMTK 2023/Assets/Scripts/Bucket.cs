@@ -66,5 +66,18 @@ public class Bucket : MonoBehaviour
                 Destroy(collision.gameObject);
             }
         }
+
+        if ((!player.GetComponent<PlayerHealth>().fire_heart && collision.gameObject.CompareTag("fire")) ||
+            player.GetComponent<PlayerHealth>().fire_heart && collision.gameObject.CompareTag("health"))
+        {
+            currentHealth -= 10;
+            if (currentHealth <= 0)
+            {
+                GameObject neew = Instantiate(bucketless);
+                neew.transform.position = transform.position;
+                neew.GetComponent<AIDestinationSetter>().target = this.GetComponent<AIDestinationSetter>().target;
+                Destroy(gameObject);
+            }
+        }
     }
 }

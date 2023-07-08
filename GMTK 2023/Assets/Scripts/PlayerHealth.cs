@@ -60,7 +60,9 @@ public class PlayerHealth : MonoBehaviour
 
                     if (currentHealth <= 0)
                     {
-                        Destroy(gameObject);
+                        GetComponent<SpriteRenderer>().enabled = false;
+                        Time.timeScale = 0;
+                        gameOver.gameObject.SetActive(true);
                     }
                 }
             }
@@ -80,7 +82,7 @@ public class PlayerHealth : MonoBehaviour
                 Destroy(collision.gameObject);
                 StartCoroutine("GetInv");
             }
-            else if(currentHealth < maxHealth)
+            else if(fire_heart && currentHealth < maxHealth)
             {
                 currentHealth += 5;
                 if (currentHealth > maxHealth) { currentHealth = maxHealth; }
@@ -96,7 +98,7 @@ public class PlayerHealth : MonoBehaviour
                 if (currentHealth > maxHealth) { currentHealth = maxHealth; }
                 Destroy(collision.gameObject);
             }
-            else if(!invincible)
+            else if(fire_heart && !invincible)
             {
                 currentHealth -= 5;
                 //Instantiate(collision.GetComponent<FireParticles>().particles).transform.position = collision.transform.position;
@@ -111,7 +113,10 @@ public class PlayerHealth : MonoBehaviour
         c.a = 0.5f;
         rend.material.color = c;
         invincible = true;
+        GetComponent<PlayerMovement>().moveSpeed += 2;
         yield return new WaitForSeconds(invincibilityTime);
+        GetComponent<PlayerMovement>().moveSpeed -= 2;
+
         invincible = false;
         c.a = 1f;
         rend.material.color = c;
