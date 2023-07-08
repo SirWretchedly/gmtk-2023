@@ -50,14 +50,15 @@ public class FollowPlayer : MonoBehaviour
                 Destroy(collision.gameObject);
             }
         }
-        if(collision.gameObject.CompareTag("fire"))
+        if((!player.GetComponent<PlayerHealth>().fire_heart && collision.gameObject.CompareTag("fire")) ||
+            player.GetComponent<PlayerHealth>().fire_heart && collision.gameObject.CompareTag("health"))
         {
             currentHealth -= 10;
             if (currentHealth <= 0)
             {
                 Die();
             }
-            Instantiate(collision.GetComponent<FireParticles>().particles).transform.position = collision.transform.position;
+            //Instantiate(collision.GetComponent<FireParticles>().particles).transform.position = collision.transform.position;
             Destroy(collision.gameObject);
         }
     }

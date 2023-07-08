@@ -13,6 +13,7 @@ public class PlayerHealth : MonoBehaviour
     public int currentHealth;
     private bool invincible = false;
     public int invincibilityTime;
+    public bool fire_heart = false;
     Renderer rend;
     Color c;
 
@@ -43,7 +44,7 @@ public class PlayerHealth : MonoBehaviour
                 int damage = enemy.damageToPlayer;
                 currentHealth -= damage;
 
-                if (currentHealth <= 0)
+                if (currentHealth < 0)
                 {
                     gameOver.gameObject.SetActive(true);
                     Destroy(gameObject);
@@ -69,19 +70,40 @@ public class PlayerHealth : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("fire") && !invincible)
+        if (collision.gameObject.CompareTag("fire"))
         {
-            currentHealth -= 10;
-            Instantiate(collision.GetComponent<FireParticles>().particles).transform.position = collision.transform.position;
+            if(!fire_heart && !invincible)
+            {
+                currentHealth -= 5;
+                Instantiate(collision.GetComponent<FireParticles>().particles).transform.position = collision.transform.position;
 
-            Destroy(collision.gameObject);
-            StartCoroutine("GetInv");
+                Destroy(collision.gameObject);
+                StartCoroutine("GetInv");
+            }
+            else if(currentHealth < maxHealth)
+            {
+                currentHealth += 5;
+                if (currentHealth > maxHealth) { currentHealth = maxHealth; }
+                Instantiate(collision.GetComponent<FireParticles>().particles).transform.position = collision.transform.position;
+                Destroy(collision.gameObject);
+            }
         }
-        else if (collision.gameObject.CompareTag("health") && currentHealth < maxHealth)
+        else if (collision.gameObject.CompareTag("health"))
         {
-            currentHealth += 10;
-            if(currentHealth > maxHealth) { currentHealth = maxHealth; }
-            Destroy(collision.gameObject);
+            if(!fire_heart && currentHealth < maxHealth)
+            {
+                currentHealth += 5;
+                if (currentHealth > maxHealth) { currentHealth = maxHealth; }
+                Destroy(collision.gameObject);
+            }
+            else if(!invincible)
+            {
+                currentHealth -= 5;
+                //Instantiate(collision.GetComponent<FireParticles>().particles).transform.position = collision.transform.position;
+
+                Destroy(collision.gameObject);
+                StartCoroutine("GetInv");
+            }
         }
     }
 

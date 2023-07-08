@@ -10,9 +10,8 @@ public class Timer : MonoBehaviour
     public float[] evenTime;
 
     private Image timeI;
-    private int index = 0;
-    public float maxTime = 200;
-    private float time;
+    public float maxTime = 200f;
+    public float time;
 
     private void Start()
     {
@@ -22,13 +21,11 @@ public class Timer : MonoBehaviour
 
     void Update()
     {
-        if(index < evenTime.Length)
+        foreach (float et in evenTime)
         {
-            evenTime[index] -= Time.deltaTime;
-            if (evenTime[index] <= 0)
+            if(et <= maxTime - time && et >= maxTime - time - 0.3)
             {
                 reverse.ActivatePanel();
-                index++;
             }
         }
         time -= Time.deltaTime;
