@@ -627,6 +627,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 04a1eae6cdc15234e8b8799b39cbfcbb, type: 3}
+--- !u!1 &509850919 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8810370178345927520, guid: 012077e3ec9b18f49aee8b48f11be851, type: 3}
+  m_PrefabInstance: {fileID: 1889802238}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &620822287 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4418269627059655992, guid: c9634cc3c822ca74690688e1c3a2d873, type: 3}
@@ -5219,17 +5224,29 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1182635218}
     - target: {fileID: 1017859640025284388, guid: 012077e3ec9b18f49aee8b48f11be851, type: 3}
+      propertyPath: menuCanvas
+      value: 
+      objectReference: {fileID: 509850919}
+    - target: {fileID: 1017859640025284388, guid: 012077e3ec9b18f49aee8b48f11be851, type: 3}
+      propertyPath: button_list.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1017859640025284388, guid: 012077e3ec9b18f49aee8b48f11be851, type: 3}
       propertyPath: button_list.Array.data[0]
       value: 
-      objectReference: {fileID: 4671379485878281054, guid: 9b46bd195cddb9749a7ed22b9d7bc9b1, type: 3}
+      objectReference: {fileID: 1729264455356619175, guid: 37601124c4d821c4290a21a0e79396aa, type: 3}
     - target: {fileID: 1017859640025284388, guid: 012077e3ec9b18f49aee8b48f11be851, type: 3}
       propertyPath: button_list.Array.data[1]
       value: 
-      objectReference: {fileID: 4671379485878281054, guid: 9b46bd195cddb9749a7ed22b9d7bc9b1, type: 3}
+      objectReference: {fileID: 4893286918867121244, guid: 424fd2fbf2bdce44087bc2273c0fe7f4, type: 3}
     - target: {fileID: 1017859640025284388, guid: 012077e3ec9b18f49aee8b48f11be851, type: 3}
       propertyPath: button_list.Array.data[2]
       value: 
-      objectReference: {fileID: 4671379485878281054, guid: 9b46bd195cddb9749a7ed22b9d7bc9b1, type: 3}
+      objectReference: {fileID: 1774741845267231740, guid: 8e528d2a2bc3314439867a072e880da4, type: 3}
+    - target: {fileID: 1017859640025284388, guid: 012077e3ec9b18f49aee8b48f11be851, type: 3}
+      propertyPath: button_list.Array.data[3]
+      value: 
+      objectReference: {fileID: 8614267851261342287, guid: 613d400ed25fd0b48a61ea535bf8b58a, type: 3}
     - target: {fileID: 1485302460571127396, guid: 012077e3ec9b18f49aee8b48f11be851, type: 3}
       propertyPath: m_Name
       value: ReverseTime
