@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 1472980064264478169}
   - component: {fileID: 6294202600201423509}
   - component: {fileID: 706822217144706830}
+  - component: {fileID: 3691344985313049242}
   m_Layer: 7
   m_Name: player
   m_TagString: Player
@@ -137,6 +138,10 @@ MonoBehaviour:
   rightOrUp: 8
   leftOrDown: -8
   diagonalFire: 0.7
+  reverseStangaDreaptaM: 1
+  reverseSusJosM: 1
+  reverseStangaDreaptaF: 1
+  reverseSusJosF: 1
   playerBulletTransform: {fileID: 0}
 --- !u!70 &1472980064264478169
 CapsuleCollider2D:
@@ -206,6 +211,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 026e976c21c1a5b4bb1971e6300658e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameOver: {fileID: 0}
+  hp: {fileID: 0}
   maxHealth: 100
   currentHealth: 0
   invincibilityTime: 1
+--- !u!114 &3691344985313049242
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8289675737646368792}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3053e184865c7474f963053f60ac2108, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentMoney: 0

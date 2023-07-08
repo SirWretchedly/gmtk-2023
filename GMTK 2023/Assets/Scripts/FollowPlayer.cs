@@ -43,7 +43,7 @@ public class FollowPlayer : MonoBehaviour
 
                 if (currentHealth <= 0)
                 {
-                    Destroy(gameObject);
+                    Die();
                 }
 
                 Instantiate(collision.GetComponent<BulletMovement>().egg).transform.position = transform.position;
@@ -55,10 +55,15 @@ public class FollowPlayer : MonoBehaviour
             currentHealth -= 10;
             if (currentHealth <= 0)
             {
-                Destroy(gameObject);
+                Die();
             }
             Instantiate(collision.GetComponent<FireParticles>().particles).transform.position = collision.transform.position;
             Destroy(collision.gameObject);
         }
+    }
+
+    private void Die() {
+        gameObject.GetComponent<DropShit>().DropThing();
+        Destroy(gameObject);
     }
 }
