@@ -23,8 +23,8 @@ public class BulletMovement : MonoBehaviour {
 	}
 
 	void Movement() {
-		rb.velocity = new Vector2 (velX, velY);
-
+        if (rb != null)
+		    rb.velocity = new Vector2 (velX, velY);
 	}
 
     private void DeleteObject()

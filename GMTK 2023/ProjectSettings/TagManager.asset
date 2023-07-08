@@ -6,6 +6,12 @@ TagManager:
   tags:
   - bullet
   - enemy
+  - reversetime
+  - buton1
+  - buton2
+  - buton3
+  - paneltime
+  - canvass
   layers:
   - Default
   - TransparentFX

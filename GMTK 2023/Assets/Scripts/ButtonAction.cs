@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BulletController : MonoBehaviour
+public class ButtonAction : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
@@ -14,5 +14,9 @@ public class BulletController : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void PerformAction() {
+        Debug.Log("lala ");
     }
 }
