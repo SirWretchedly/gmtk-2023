@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
     public Rigidbody2D rb;
     private Vector2 moveDirection;
 
+	public Animator animator;
 
     public GameObject playerBulletPrefab;
 	public Transform playerTransform;
@@ -26,6 +27,7 @@ public class PlayerMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D> ();
         playerTransform = gameObject.transform;
+		animator = GetComponent<Animator> ();
     }
 
     // Update is called once per frame
@@ -56,12 +58,37 @@ public class PlayerMovement : MonoBehaviour
         moveDirection = new Vector2(moveX, moveY).normalized;
     }
 
-    void Move()
-    {
-        rb.velocity = new Vector2(moveDirection.x * moveSpeed, moveDirection.y * moveSpeed);
-    }
+	void Move()
+	{
+		rb.velocity = new Vector2(moveDirection.x * moveSpeed, moveDirection.y * moveSpeed);
 
-    void fireDownLeft()
+		if (rb.velocity.x == 0 && rb.velocity.y == 0)
+		{
+			animator.SetBool("moving", false);
+		}
+		else
+            animator.SetBool("moving", true);
+
+
+        if (rb.velocity.x > 0)
+		{
+			animator.Play("chicken-run-right");
+		}
+		else if (rb.velocity.x < 0)
+		{
+			animator.Play("chicken-run-left");
+		}
+		else if (rb.velocity.y > 0)
+		{
+			animator.Play("chicken-run-up");
+		}
+		else
+		{
+			animator.Play("chicken-run-down");
+		}
+	}
+
+	void fireDownLeft()
 	{
 		if (Input.GetKey(KeyCode.DownArrow) && Time.time > nextFire && Input.GetKey(KeyCode.LeftArrow))
 		{

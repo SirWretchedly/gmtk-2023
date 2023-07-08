@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.AI;
 
 public class FollowPlayer : MonoBehaviour
 {
@@ -25,15 +25,7 @@ public class FollowPlayer : MonoBehaviour
 
     void Update()
     {
-        if (Vector3.Distance(transform.position, player.transform.position) > 0.5)
-        {
-            transform.position = Vector3.MoveTowards(transform.position, player.transform.position, movementSpeed * Time.deltaTime);
-            //  animator.SetBool("moving", true);
-        }
-        else
-        {
-            // animator.SetBool("moving", false);
-        }
+     
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -53,6 +45,8 @@ public class FollowPlayer : MonoBehaviour
                 {
                     Destroy(gameObject);
                 }
+
+                Instantiate(collision.GetComponent<BulletMovement>().egg).transform.position = transform.position;
                 Destroy(collision.gameObject);
             }
         }

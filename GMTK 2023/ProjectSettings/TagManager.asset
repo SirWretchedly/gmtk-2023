@@ -19,12 +19,12 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - enemy
+  - player
+  - bullet
+  - water
+  - hay
+  - floor
   - 
   - 
   - 
