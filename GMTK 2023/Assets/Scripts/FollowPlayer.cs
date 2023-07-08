@@ -30,7 +30,7 @@ public class FollowPlayer : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("YESSSS " + collision.gameObject.tag);
+        //Debug.Log("YESSSS " + collision.gameObject.tag);
         if (collision.gameObject.CompareTag("bullet"))
         {
 
@@ -57,7 +57,7 @@ public class FollowPlayer : MonoBehaviour
             {
                 Destroy(gameObject);
             }
-            collision.GetComponent<ParticleSystem>().Play();
+            Instantiate(collision.GetComponent<FireParticles>().particles).transform.position = collision.transform.position;
             Destroy(collision.gameObject);
         }
     }

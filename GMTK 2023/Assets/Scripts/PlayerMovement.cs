@@ -143,7 +143,7 @@ public class PlayerMovement : MonoBehaviour
 		{
 			nextFire = Time.time + fireRate;
 			CreatePlayerBullet();
-			pbx = leftOrDown;
+			pbx = leftOrDown * reverseStangaDreaptaF;
 			pby = 0;
 			BulletMovement.velX = pbx;
 			BulletMovement.velY = pby;
