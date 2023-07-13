@@ -17,6 +17,7 @@ public class FollowPlayer : MonoBehaviour
     
     void Start()
     {
+        //Physics2D.IgnoreCollision(GetComponent<Collider2D>(), player.GetComponent<Collider2D>());
         player = GameObject.FindWithTag("Player");
         // animator = gameObject.GetComponent<Animator>();
         // status = gameObject.transform.Find("Status").gameObject.GetComponent<Animator>();
@@ -40,6 +41,7 @@ public class FollowPlayer : MonoBehaviour
             {
                 int damage = bulletController.damage;
                 currentHealth -= damage;
+                GetComponent<AudioSource>().Play();
 
                 if (currentHealth <= 0)
                 {
@@ -54,6 +56,7 @@ public class FollowPlayer : MonoBehaviour
             player.GetComponent<PlayerHealth>().fire_heart && collision.gameObject.CompareTag("health"))
         {
             currentHealth -= 10;
+            GetComponent<AudioSource>().Play();
             if (currentHealth <= 0)
             {
                 Die();

@@ -27,14 +27,14 @@ public class PlayerMovement : MonoBehaviour
 	float pby;
 	float nextFire;
 
-    private KeyCode downM = KeyCode.S;
-    private KeyCode downF = KeyCode.DownArrow;
-    private KeyCode upM = KeyCode.W;
-    private KeyCode upF = KeyCode.UpArrow;
-    private KeyCode leftM = KeyCode.A;
-    private KeyCode leftF = KeyCode.LeftArrow;
-    private KeyCode rightM = KeyCode.D;
-    private KeyCode rightF = KeyCode.RightArrow;
+    public KeyCode downM = KeyCode.S;
+    public KeyCode downF = KeyCode.DownArrow;
+    public KeyCode upM = KeyCode.W;
+    public KeyCode upF = KeyCode.UpArrow;
+    public KeyCode leftM = KeyCode.A;
+    public KeyCode leftF = KeyCode.LeftArrow;
+    public KeyCode rightM = KeyCode.D;
+    public KeyCode rightF = KeyCode.RightArrow;
 
     // Start is called before the first frame update
     void Start()

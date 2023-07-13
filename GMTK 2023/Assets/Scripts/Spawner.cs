@@ -14,6 +14,7 @@ public class Spawner : MonoBehaviour
 
     private void Start()
     {
+        player = GameObject.FindWithTag("Player");
         cooldown = Random.Range(min, max);
         StartCoroutine(Spawn());
     }
@@ -26,6 +27,7 @@ public class Spawner : MonoBehaviour
         {
             if (spawnChance < chance[i])
             {
+                GetComponent<AudioSource>().Play();
                 GameObject zombie = Instantiate(gameObjects[i]);
                 zombie.transform.position = transform.position;
                 zombie.GetComponent<AIDestinationSetter>().target = player.transform;

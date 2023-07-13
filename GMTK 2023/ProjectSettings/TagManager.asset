@@ -18,6 +18,8 @@ TagManager:
   - time
   - canvass
   - fire
+  - water
+  - hay
   layers:
   - Default
   - TransparentFX

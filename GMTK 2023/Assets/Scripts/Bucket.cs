@@ -20,6 +20,7 @@ public class Bucket : MonoBehaviour
 
     void Start()
     {
+        //Physics2D.IgnoreCollision(GetComponent<Collider2D>(), player.GetComponent<Collider2D>());
         player = GameObject.FindWithTag("Player");
         // animator = gameObject.GetComponent<Animator>();
         // status = gameObject.transform.Find("Status").gameObject.GetComponent<Animator>();
@@ -51,6 +52,7 @@ public class Bucket : MonoBehaviour
             {
                 int damage = bulletController.damage;
                 currentHealth -= damage;
+                GetComponent<AudioSource>().Play();
 
                 if (currentHealth <= 0)
                 {
@@ -71,6 +73,7 @@ public class Bucket : MonoBehaviour
             player.GetComponent<PlayerHealth>().fire_heart && collision.gameObject.CompareTag("health"))
         {
             currentHealth -= 10;
+            GetComponent<AudioSource>().Play();
             if (currentHealth <= 0)
             {
                 GameObject neew = Instantiate(bucketless);
@@ -78,6 +81,7 @@ public class Bucket : MonoBehaviour
                 neew.GetComponent<AIDestinationSetter>().target = this.GetComponent<AIDestinationSetter>().target;
                 Destroy(gameObject);
             }
+            Destroy(collision.gameObject);
         }
     }
 }

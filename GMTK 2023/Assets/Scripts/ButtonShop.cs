@@ -15,35 +15,61 @@ public class ButtonShop : MonoBehaviour
     void Start()
     {
         UpdateUITextPrice();
+        player = GameObject.FindWithTag("Player");
     }
 
     // Update is called once per frame
     void Update()
     {
-        player = GameObject.FindWithTag("Player");
+
     }
 
-    void UpdateUITextPrice() {
-        foreach(Transform tr in gameObject.transform){
-            if(tr.tag == "shopPrice"){
+    void UpdateUITextPrice()
+    {
+        foreach (Transform tr in gameObject.transform)
+        {
+            if (tr.tag == "shopPrice")
+            {
                 counterText = (TextMeshProUGUI)tr.gameObject.GetComponent<TextMeshProUGUI>();
                 counterText.text = itemPrice.ToString();
-           }
+            }
         }
     }
 
-    public void moreHealth() {
-        player.GetComponent<PlayerHealth>().maxHealth += 10;
-        player.GetComponent<PlayerMoney>().SpendMoney(itemPrice);
+    public void moreHealth()
+    {
+        print(player.GetComponent<PlayerMoney>().currentMoney);
+        if (itemPrice <= player.GetComponent<PlayerMoney>().currentMoney)
+        {
+            player.GetComponent<PlayerHealth>().maxHealth += 5;
+            player.GetComponent<PlayerMoney>().SpendMoney(itemPrice);
+            itemPrice *= 2;
+            counterText.text = itemPrice.ToString();
+        }
     }
 
-    public void moreSpeed() {
-        player.GetComponent<PlayerMovement>().moveSpeed += 1;
-        player.GetComponent<PlayerMoney>().SpendMoney(itemPrice);
+    public void moreSpeed()
+    {
+        if (itemPrice <= player.GetComponent<PlayerMoney>().currentMoney)
+        {
+            player.GetComponent<PlayerMovement>().moveSpeed += 1;
+            player.GetComponent<PlayerMoney>().SpendMoney(itemPrice);
+            itemPrice *= 2;
+            counterText.text = itemPrice.ToString();
+        }
     }
 
-    public void moreDamage() {
-        player.GetComponent<PlayerMoney>().SpendMoney(itemPrice);
+    public void moreFireRate()
+    {
+        if (itemPrice <= player.GetComponent<PlayerMoney>().currentMoney)
+        {
+            if (player.GetComponent<PlayerMovement>().fireRate > 0.1f)
+            {
+                player.GetComponent<PlayerMovement>().fireRate /= 1.5f;
+                player.GetComponent<PlayerMoney>().SpendMoney(itemPrice);
+                itemPrice *= 2;
+                counterText.text = itemPrice.ToString();
+            }
+        }
     }
-    
 }

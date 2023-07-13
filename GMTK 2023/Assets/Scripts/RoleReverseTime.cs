@@ -22,7 +22,7 @@ public class RoleReverseTime : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.M))
+        /**if (Input.GetKeyDown(KeyCode.M))
         {
             Debug.Log(isActive);
             if (!menuCanvas.activeSelf) {
@@ -30,7 +30,7 @@ public class RoleReverseTime : MonoBehaviour
             } else {
                 DeactivatePanel();
             }
-        }
+        }**/
     }
 
     private List<int> GenerateUniqueRandomNumbers(int minRange, int maxRange, int count)

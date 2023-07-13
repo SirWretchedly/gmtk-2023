@@ -7,10 +7,12 @@ using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
 {
+    public int deathcount = 0;
+    public bool draining = false;
     public Canvas gameOver;
     public Image hp;
     public int maxHealth = 100;
-    public int currentHealth;
+    public float currentHealth;
     private bool invincible = false;
     public int invincibilityTime;
     public bool fire_heart = false;
@@ -28,7 +30,14 @@ public class PlayerHealth : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        hp.fillAmount = (float)currentHealth/(float)maxHealth;
+        hp.fillAmount = (float)currentHealth / (float)maxHealth;
+
+        if(currentHealth <= 0)
+        {
+            Time.timeScale = 0;
+            gameOver.gameObject.SetActive(true);
+            
+        }
     }
 
     private void OnCollisionStay2D(Collision2D collision)
@@ -39,34 +48,34 @@ public class PlayerHealth : MonoBehaviour
 
             FollowPlayer enemy = collision.gameObject.GetComponent<FollowPlayer>();
 
-            if (enemy != null)
+            if (!draining)
             {
-                int damage = enemy.damageToPlayer;
-                currentHealth -= damage;
-
-                if (currentHealth < 0)
+                if (enemy != null)
                 {
-                    gameOver.gameObject.SetActive(true);
-                    Destroy(gameObject);
+                    int damage = enemy.damageToPlayer;
+                    currentHealth -= damage;
+                    DamageSound();
+                    deathcount++;
                 }
+                else
+                {
+                    Bucket bucket = collision.gameObject.GetComponent<Bucket>();
+                    if (bucket != null)
+                    {
+                        int damage = bucket.damageToPlayer;
+                        currentHealth -= damage;
+                        DamageSound();
+                        deathcount++;
+                    }
+                }
+                StartCoroutine("GetInv");
             }
             else
             {
-                Bucket bucket = collision.gameObject.GetComponent<Bucket>();
-                if (bucket != null)
-                {
-                    int damage = bucket.damageToPlayer;
-                    currentHealth -= damage;
-
-                    if (currentHealth <= 0)
-                    {
-                        GetComponent<SpriteRenderer>().enabled = false;
-                        Time.timeScale = 0;
-                        gameOver.gameObject.SetActive(true);
-                    }
-                }
+                currentHealth += 5;
+                if (currentHealth > maxHealth) { currentHealth = maxHealth; }
+                Destroy(collision.gameObject);
             }
-            StartCoroutine("GetInv");
         }
     }
 
@@ -74,15 +83,20 @@ public class PlayerHealth : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("fire"))
         {
-            if(!fire_heart && !invincible)
+            if (!fire_heart && !invincible)
             {
                 currentHealth -= 5;
+                DamageSound();
+                if (currentHealth < 0)
+                {
+                    deathcount++;
+                }
                 Instantiate(collision.GetComponent<FireParticles>().particles).transform.position = collision.transform.position;
 
                 Destroy(collision.gameObject);
                 StartCoroutine("GetInv");
             }
-            else if(fire_heart && currentHealth < maxHealth)
+            else if ((fire_heart || draining) && currentHealth < maxHealth)
             {
                 currentHealth += 5;
                 if (currentHealth > maxHealth) { currentHealth = maxHealth; }
@@ -92,15 +106,21 @@ public class PlayerHealth : MonoBehaviour
         }
         else if (collision.gameObject.CompareTag("health"))
         {
-            if(!fire_heart && currentHealth < maxHealth)
+            if (!fire_heart && currentHealth < maxHealth)
             {
                 currentHealth += 5;
+                AudioSource.PlayClipAtPoint(collision.GetComponent<AudioSource>().clip, transform.position, 100);
                 if (currentHealth > maxHealth) { currentHealth = maxHealth; }
                 Destroy(collision.gameObject);
             }
-            else if(fire_heart && !invincible)
+            else if (fire_heart && !invincible)
             {
                 currentHealth -= 5;
+                DamageSound();
+                if (currentHealth < 0)
+                {
+                    deathcount++;
+                }
                 //Instantiate(collision.GetComponent<FireParticles>().particles).transform.position = collision.transform.position;
 
                 Destroy(collision.gameObject);
@@ -109,7 +129,8 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
-    IEnumerator GetInv() {
+    IEnumerator GetInv()
+    {
         c.a = 0.5f;
         rend.material.color = c;
         invincible = true;
@@ -121,4 +142,11 @@ public class PlayerHealth : MonoBehaviour
         c.a = 1f;
         rend.material.color = c;
     }
+
+    public void DamageSound()
+    {
+        GetComponent<AudioSource>().Play();
+    }
+
+
 }

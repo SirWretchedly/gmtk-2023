@@ -9,7 +9,7 @@ public class Strike : MonoBehaviour
     float delay;
     void Start()
     {
-        delay = Random.Range(5, 15);
+        delay = Random.Range(8, 18);
         StartCoroutine(Lightning());
     }
 
@@ -20,6 +20,7 @@ public class Strike : MonoBehaviour
     {
         yield return new WaitForSeconds(delay);
         lightning.enabled = true;
+        GetComponent<AudioSource>().Play();
         yield return new WaitForSeconds(0.2f);
         Instantiate(fire).transform.position = transform.position;
        lightning.enabled = false;
